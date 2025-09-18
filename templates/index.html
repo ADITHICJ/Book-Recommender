@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css?v=2" crossorigin="anonymous">
+
+    <style>
+        .text-black {
+            color: black;
+        }
+        .card-img-top {
+            max-height: 200px;
+            object-fit: cover;
+        }
+        .card {
+            margin-bottom: 30px;
+        }
+        .navbar {
+            background-color: #111BF5;
+        }
+        .navbar a {
+            color: white !important;
+        }
+        .navbar a:hover {
+            color: darkblue !important;
+        }
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <span class="navbar-brand" style="color: white;">My Book Recommender</span>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/recommend">Recommend</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-black" style="font-size:50px">Top 50 Books</h1>
+            </div>
+
+            {% for i in range(book_name|length) %}
+                <div class="col-md-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <img class="card-img-top" src="{{ image[i] }}" alt="Book Cover">
+                            <p class="text-black">{{ book_name[i] }}</p>
+                            <h4 class="text-black">{{ author[i] }}</h4>
+                            <h4 class="text-black">Votes - {{ votes[i] }}</h4>
+                            <h4 class="text-black">Rating - {{ '%.2f' % rating[i] }}</h4>
+                        </div>
+                    </div>
+                </div>
+                {% if (i+1) % 4 == 0 %}
+                    </div><div class="row">
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</body>
+</html>
